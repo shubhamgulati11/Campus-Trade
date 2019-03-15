@@ -21,7 +21,6 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     Button btn,btnSave;
-
     Bitmap photo;
     EditText etName,etSpac,etMobno;
     private static final int CAMERA_REQUEST = 1888;
@@ -36,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         etMobno=findViewById(R.id.etMobno);
         etSpac=findViewById(R.id.etSpec);
         etName=findViewById(R.id.etName);
+        btnSave = findViewById(R.id.btnSave);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 product p=new product(etName.getText().toString(),Integer.parseInt(etMobno.getText().toString()),etSpac.getText().toString(),photo);
-
             }
         });
 
