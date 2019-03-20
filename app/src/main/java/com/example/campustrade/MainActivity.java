@@ -18,47 +18,72 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
+
 public class MainActivity extends AppCompatActivity {
 
-    Button btn,btnSave;
+    Button btnSave;
     Bitmap photo;
     EditText etName,etSpac,etMobno;
     private static final int CAMERA_REQUEST = 1888;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
     ImageView iv;
+
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference rootReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btn=findViewById(R.id.btn);
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        rootReference = firebaseDatabase.getReference();
+
+//        btn=findViewById(R.id.btn);
         iv=findViewById(R.id.iv);
         etMobno=findViewById(R.id.etMobno);
         etSpac=findViewById(R.id.etSpec);
         etName=findViewById(R.id.etName);
         btnSave = findViewById(R.id.btnSave);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
-                    {
-                        Log.e("TAG","Permission not given if");
-                        requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_PERMISSION_CODE);
-                    }
-                    else
-                    {
-                        Log.e("TAG","Permission given start activity for result");
-                        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        startActivityForResult(cameraIntent, CAMERA_REQUEST);
-                    }
-                }
-            }
-        });
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this, Main3Activity.class);
+//                startActivity(intent);
+//            }
+//        });
+        String image = getIntent().getExtras().getString("image");
+        Picasso.get().load(image).into(iv);
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                    if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+//                    {
+//                        Log.e("TAG","Permission not given if");
+//                        requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_PERMISSION_CODE);
+//                    }
+//                    else
+//                    {
+//                        Log.e("TAG","Permission given start activity for result");
+//                        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+//                    }
+//                }
+//            }
+//        });
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                product p=new product(etName.getText().toString(),etMobno.getText().toString(),etSpac.getText().toString(),photo);
+                String image = getIntent().getExtras().getString("image");
+                product p = new product(etName.getText().toString(),etMobno.getText().toString(),etSpac.getText().toString(),image);
+//                Intent y = new Intent(MainActivity.this, Main2Activity.class);
+                rootReference.push().setValue(p);
+                finish();
             }
         });
 

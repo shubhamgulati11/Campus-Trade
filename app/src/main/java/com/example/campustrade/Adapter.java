@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
@@ -35,7 +37,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         viewHolder.description.setText(productArrayList.get(i).spec);
         viewHolder.titleText.setText(productArrayList.get(i).name);
-        viewHolder.imageView.setImageBitmap(productArrayList.get(i).bm);
+//        viewHolder.imageView.setImageBitmap(productArrayList.get(i).);
+        Picasso.get().load(productArrayList.get(i).image).into(viewHolder.imageView);
     }
 
     @Override

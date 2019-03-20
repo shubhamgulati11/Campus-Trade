@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "699118860815-u60qq46aeut954ov8e4587t96sejac2v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.campustrade",
+            "certificate_hash": "63f39044fdf36e3fa219350780b5103d5501f417"
+          }
+        },
+        {
           "client_id": "699118860815-8qv6di4h8e89gc69kg2erp6dhvkm777u.apps.googleusercontent.com",
           "client_type": 3
         }
