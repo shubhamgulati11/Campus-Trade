@@ -6,11 +6,11 @@ import android.os.Parcelable;
 
 public class product implements Parcelable {
     String name;
-    int mobno;
+    String mobno;
     String spec;
     Bitmap bm;
 
-    public product(String name, int mobno, String spec, Bitmap bm) {
+    public product(String name, String mobno, String spec, Bitmap bm) {
         this.name = name;
         this.mobno = mobno;
         this.spec = spec;
@@ -19,7 +19,7 @@ public class product implements Parcelable {
 
     protected product(Parcel in) {
         name = in.readString();
-        mobno = in.readInt();
+        mobno = in.readString();
         spec = in.readString();
         bm = in.readParcelable(Bitmap.class.getClassLoader());
     }
@@ -44,11 +44,11 @@ public class product implements Parcelable {
         this.name = name;
     }
 
-    public int getMobno() {
+    public String getMobno() {
         return mobno;
     }
 
-    public void setMobno(int mobno) {
+    public void setMobno(String mobno) {
         this.mobno = mobno;
     }
 
@@ -76,7 +76,7 @@ public class product implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
-        dest.writeInt(mobno);
+        dest.writeString(mobno);
         dest.writeString(spec);
         dest.writeParcelable(bm, flags);
     }

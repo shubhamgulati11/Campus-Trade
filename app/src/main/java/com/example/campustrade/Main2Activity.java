@@ -40,10 +40,10 @@ public class Main2Activity extends AppCompatActivity {
         Bitmap bm3 = BitmapFactory.decodeResource(getResources(), R.drawable.watch);
         Bitmap bm4 = BitmapFactory.decodeResource(getResources(), R.drawable.calculator);
 
-        pro.add(new product("Laptop", 123, "Dell", bm1));
-        pro.add(new product("Phone", 234, "Oppo", bm2));
-        pro.add(new product("Watch", 456, "Casio", bm3));
-        pro.add(new product("Calculator", 896, "F991Ex", bm4));
+        pro.add(new product("Laptop", "123", "Dell", bm1));
+        pro.add(new product("Phone", "234", "Oppo", bm2));
+        pro.add(new product("Watch", "456", "Casio", bm3));
+        pro.add(new product("Calculator", "896", "F991Ex", bm4));
 
         rv=findViewById(R.id.rv);
         LinearLayoutManager llm = new LinearLayoutManager(this);
