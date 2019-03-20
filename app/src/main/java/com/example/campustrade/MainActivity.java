@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                product p=new product(etName.getText().toString(),Integer.parseInt(etMobno.getText().toString()),etSpac.getText().toString(),photo);
+                product p=new product(etName.getText().toString(),etMobno.getText().toString(),etSpac.getText().toString(),photo);
             }
         });
 
