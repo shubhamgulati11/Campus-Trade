@@ -8,20 +8,23 @@ public class product implements Parcelable {
     String name;
     String mobno;
     String spec;
-    Bitmap bm;
+    String image;
 
-    public product(String name, String mobno, String spec, Bitmap bm) {
+    public product() {
+    }
+
+    public product(String name, String mobno, String spec, String image) {
         this.name = name;
         this.mobno = mobno;
         this.spec = spec;
-        this.bm = bm;
+        this.image = image;
     }
 
     protected product(Parcel in) {
         name = in.readString();
         mobno = in.readString();
         spec = in.readString();
-        bm = in.readParcelable(Bitmap.class.getClassLoader());
+        image = in.readString();
     }
 
     public static final Creator<product> CREATOR = new Creator<product>() {
@@ -35,6 +38,19 @@ public class product implements Parcelable {
             return new product[size];
         }
     };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(name);
+        parcel.writeString(mobno);
+        parcel.writeString(spec);
+        parcel.writeString(image);
+    }
 
     public String getName() {
         return name;
@@ -60,24 +76,11 @@ public class product implements Parcelable {
         this.spec = spec;
     }
 
-    public Bitmap getBm() {
-        return bm;
+    public String getImage() {
+        return image;
     }
 
-    public void setBm(Bitmap bm) {
-        this.bm = bm;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
-        dest.writeString(mobno);
-        dest.writeString(spec);
-        dest.writeParcelable(bm, flags);
+    public void setImage(String image) {
+        this.image = image;
     }
 }
